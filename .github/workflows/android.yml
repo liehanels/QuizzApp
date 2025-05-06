@@ -23,8 +23,8 @@ jobs:
     - name: Grant execute permission for gradlew
       run: chmod +x gradlew
 
-    - name: Upgrade Gradle wrapper to Gradle 9
-      run: ./gradlew wrapper --gradle-version 9
+    - name: Upgrade Gradle wrapper to the latest release
+      run: ./gradlew wrapper --gradle-version latest
 
     - name: Build with Gradle
       run: ./gradlew build
