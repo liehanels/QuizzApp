@@ -1,6 +1,9 @@
 package com.liehan.quizzapp
 
+import android.content.Intent
 import android.os.Bundle
+import android.widget.Button
+import android.widget.EditText
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
@@ -15,6 +18,23 @@ class MainActivity : AppCompatActivity() {
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
+        }//end of ViewCompat
+        //Code goes here
+        //link the elements from the GUI to the backend
+        val edtUsername = findViewById<EditText>(R.id.edtUsername)
+        val btnStartQuiz = findViewById<Button>(R.id.btnStartQuiz)
+        btnStartQuiz.setOnClickListener {
+            //retrieve the data from the elements
+            val username = edtUsername.text.toString()
+            //check if the username is empty
+            if (username.isEmpty()) {
+                edtUsername.error = "Please enter a username"
+                return@setOnClickListener
+            }
+            //start the quiz activity
+            val intent = Intent(this, QuizActivity::class.java).putExtra("username", username)
+            startActivity(intent)
+            finish()
         }
-    }
-}
+    }//end of onCreate
+}//end of MainActivity
